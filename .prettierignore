@@ -1,0 +1,8 @@
+.next
+node_module/
+.next-env.d.ts
+.public
+.eslintrc.json
+.README.md
+.tsconfig.json
+.prettierrc
