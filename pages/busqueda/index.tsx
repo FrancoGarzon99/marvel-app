@@ -18,7 +18,6 @@ const Busqueda: NextPage<PropsBusqueda> = () => {
   const [inputText, setInputText] = useState<string>("");
   const [numberPage, setNumberPage] = useState<number>(0);
   const [heroSearch, setHeroSearch] = useState<ModelDataMarvelGet>();
-  console.log(heroSearch, 'SEARCH');
   function InputTextFn(e: React.ChangeEvent<HTMLInputElement>) {
     setInputText(e.target.value);
   }
