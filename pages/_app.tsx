@@ -37,7 +37,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Container
         borderRadius="sm"
         layerStyle="container"
-        maxWidth={{ base: "sm", md: "container.md", xl: "container.xl" }}
+        maxWidth={{ base: "sm", md: "container.md", xl: "container.md", xxl: "container.xl" }}
         padding={0}
       >
         <Stack spacing={0}>

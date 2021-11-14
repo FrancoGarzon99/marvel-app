@@ -20,6 +20,7 @@ export interface ModelHeroData {
   id : number
   modified : string
   name : string 
+  title?: string
   resourceURI : string
   series: SeriesData
   stories : StoriesData
