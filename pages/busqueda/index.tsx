@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import type { NextPage, GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import { Box, Button, Input, Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import { ModelDataMarvelGet } from '../../types';
 import { Search } from '../../services/Endpoints';
-import { useRouter } from 'next/dist/client/router';
 
 interface PropsBusqueda {
 
@@ -23,11 +23,11 @@ const Busqueda: NextPage<PropsBusqueda> = () => {
   }
   function SubmitHeroSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    Search(inputText, numberPage).then((res: any) => setHeroSearch(res));
+    Search(inputText, numberPage, value).then((res: any) => setHeroSearch(res));
   }
 
   return (
-    <Box>
+    <Stack align="center" direction={"row"} justify="space-between" p={6} spacing={2}>
       <Box alignItems={"center"} display={"flex"}>
         <form onSubmit={SubmitHeroSearch}>
           <Box display={"flex"} pl={4} >
@@ -42,11 +42,10 @@ const Busqueda: NextPage<PropsBusqueda> = () => {
             <Radio value="all">Todos</Radio>
             <Radio value="comics">Comics</Radio>
             <Radio value="series">Series</Radio>
-            <Radio value="events">Eventos</Radio>
           </Stack>
         </RadioGroup>
       </Box>
-    </Box>
+    </Stack>
   );
 };
 export default Busqueda;

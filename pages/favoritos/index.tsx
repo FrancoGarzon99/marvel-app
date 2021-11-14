@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import type { NextPage } from 'next';
-import { Box, Text, Button, useToast, Avatar, Stack } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Box, Text, useToast, } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import CardFav from '../../components/CardFav';
 interface PropsFavoritos {
 
 }
+const MotionBox = motion(Box);
+
 const Favoritos: NextPage<PropsFavoritos> = () => {
+  const router = useRouter();
   const toast = useToast();
   const [favoritesList, setFavoritesList] = useState<Array<any>>();
 
@@ -32,23 +37,15 @@ const Favoritos: NextPage<PropsFavoritos> = () => {
   }
   return (
     <Box p={6} >
-      <Box cursor={"pointer"}>
-        <NextLink passHref href={"/"}>
-          <Text>Volver</Text>
-        </NextLink>
-      </Box>
+      <MotionBox cursor="pointer" h="50px" w="50px" whileTap={{ scale: 0.6 }} onClick={() => router.back()} >
+        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path clipRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" fillRule="evenodd" />
+        </svg>
+      </MotionBox>
       <Text fontSize="20px" py={2} textAlign="center">Mis Superheroes Favoritos</Text>
       <Box>
-        {favoritesList && favoritesList?.map((s: { id: number, name: string, image: string; }) => (
-          <Box key={s.id} border="1px solid #fff" m={6} p={4}>
-            <Stack align="center" direction={["column", "column", "column", "row"]} justify="space-between" spacing={2} >
-              <Stack align="center" direction={["column", "column", "column", "row"]} justify="center" spacing={4}>
-                <Avatar name={s.name} size="xl" src={s.image} />
-                <Text fontSize="18px">{s.name}</Text>
-              </Stack>
-              <Button colorScheme="red" w="200px" onClick={() => DeleteHero(s.id)}> Eliminar</Button>
-            </Stack>
-          </Box>
+        {favoritesList && favoritesList?.map((superhero: { id: number, name: string, image: string; }) => (
+          <CardFav key={superhero.id} DeleteHero={DeleteHero} superheroe={superhero} />
         ))}
       </Box>
     </Box>

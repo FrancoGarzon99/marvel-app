@@ -36,12 +36,11 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <Container
         borderRadius="sm"
-        borderWidth={1}
         layerStyle="container"
         maxWidth={{ base: "sm", md: "container.md", xl: "container.xl" }}
         padding={0}
       >
-        <Stack divider={<StackDivider />} spacing={0}>
+        <Stack spacing={0}>
           <Stack alignItems="center" layerStyle="card" padding={4} spacing={2} textAlign="center">
             <Stack
               alignItems="baseline"
@@ -61,7 +60,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </Stack>
         <footer >
-          Footer
+          <Box py={6} textAlign={"center"}>
+            <Text >
+              © 2021 Franco Garzon
+            </Text>
+          </Box>
         </footer>
       </Container>
 

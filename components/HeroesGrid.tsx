@@ -39,7 +39,7 @@ const HeroesGrid = ({ heroesList }: PropsHeroGrid) => {
   return (
     <Box>
       <Text fontSize={"20px"} py={6} textAlign={"center"}>Tus Superheroes Favoritos</Text>
-      <SimpleGrid columns={8} minChildWidth="280px" spacing={"20px"}>
+      <SimpleGrid columns={4} minChildWidth="280px" p={8} spacing={"20px"}>
         {heroesList && heroesList?.data?.results.map(hero => (
           <CardHero key={hero.id} addFav={addFavorite} hero={hero} />
         ))}

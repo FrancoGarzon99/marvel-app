@@ -12,9 +12,22 @@ export const ListSuperHeroes = async (pageNumber : string | undefined | string[]
 };
 
 // Busca un superHeroe expecifico
-export const Search = async (name : string,pageNumber : number = 0,): Promise<any> => {
+export const Search = async (name : string,pageNumber : number = 0, typeSearch = "all"): Promise<any> => {
+
+  if(typeSearch === "all"){
     const res = await fetch(`https://gateway.marvel.com:443/v1/public/characters?name=${name}&apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}&offset=${pageNumber}`);
     return await res.json();
+  }
+  if(typeSearch === "comics"){
+    const res = await fetch(`https://gateway.marvel.com:443/v1/public/comics?title=${name}&apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}&offset=${pageNumber}`);
+    return await res.json();
+  }
+  if(typeSearch === "series"){
+    const res = await fetch(`https://gateway.marvel.com:443/v1/public/series?title=${name}&apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}&offset=${pageNumber}`);
+    return await res.json();
+  }
+  
+
 };
 // Datos un superHeroe expecifico
 export const DataHeroSelect =  (id: string | undefined | string[]): Promise<any> => {
