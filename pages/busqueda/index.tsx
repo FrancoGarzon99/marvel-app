@@ -9,8 +9,6 @@ import GoBack from '../../components/GoBack';
 interface PropsBusqueda {
 
 }
-
-
 const Busqueda: NextPage<PropsBusqueda> = () => {
 
   const [value, setValue] = useState("character");
@@ -61,9 +59,3 @@ const Busqueda: NextPage<PropsBusqueda> = () => {
   );
 };
 export default Busqueda;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  return {
-    props: {}
-  };
-};

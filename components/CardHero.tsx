@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 interface PropsCardHero {
   hero: ModelHeroData;
   addFav: (id: number, name: string, image: string) => void;
-  activeFn: boolean;
+  activeFn?: boolean;
 }
 
 const CardHero = ({ hero, addFav, activeFn = true }: PropsCardHero) => {
