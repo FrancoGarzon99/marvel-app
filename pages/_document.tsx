@@ -1,5 +1,5 @@
 // import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -12,8 +12,15 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link href="https://fonts.googleapis.com" rel="preconnect" />
-          <link crossOrigin='' href="https://fonts.gstatic.com" rel="preconnect" />
-          <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet" />
+          <link
+            crossOrigin=""
+            href="https://fonts.gstatic.com"
+            rel="preconnect"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
@@ -24,5 +31,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;;
-
+export default MyDocument;

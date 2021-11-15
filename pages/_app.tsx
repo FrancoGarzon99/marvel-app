@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import "../styles/globals.css";
 import themeChakra from "../styles/themeChakra";
 import Head from "next/head";
 import {
@@ -13,11 +13,9 @@ import {
   useColorMode,
   Box,
 } from "@chakra-ui/react";
-import type { AppProps } from 'next/app';
-
+import type { AppProps } from "next/app";
 
 const App = ({ Component, pageProps }: AppProps) => {
-
   const { toggleColorMode, colorMode } = useColorMode();
 
   return (
@@ -28,20 +26,29 @@ const App = ({ Component, pageProps }: AppProps) => {
         {/* Start meta tags */}
         <meta content="Franco" name="author" />
         <meta content="Franco Garzon" name="copyright" />
-        <meta
-          content="Marvel App"
-        />
+        <meta content="Marvel App" />
         <meta content="marvel,hero,superhero" name="keywords" />
         {/* End meta tags */}
       </Head>
       <Container
         borderRadius="sm"
         layerStyle="container"
-        maxWidth={{ base: "sm", md: "container.md", xl: "container.md", xxl: "container.xl" }}
+        maxWidth={{
+          base: "sm",
+          md: "container.md",
+          xl: "container.md",
+          xxl: "container.xl",
+        }}
         padding={0}
       >
         <Stack spacing={0}>
-          <Stack alignItems="center" layerStyle="card" padding={4} spacing={2} textAlign="center">
+          <Stack
+            alignItems="center"
+            layerStyle="card"
+            padding={4}
+            spacing={2}
+            textAlign="center"
+          >
             <Stack
               alignItems="baseline"
               aria-label="Cambiar modo de color"
@@ -52,30 +59,27 @@ const App = ({ Component, pageProps }: AppProps) => {
               spacing={2}
               onClick={toggleColorMode}
             >
-              <Text textStyle="soft">
-                Marvel App 🙌
-              </Text>
+              <Text textStyle="soft">Marvel App 🙌</Text>
             </Stack>
           </Stack>
           <Component {...pageProps} />
         </Stack>
-        <footer >
+        <footer>
           <Box py={6} textAlign={"center"}>
-            <Text >
-              © 2021 Franco Garzon
-            </Text>
+            <Text>© 2021 Franco Garzon</Text>
           </Box>
         </footer>
       </Container>
-
     </>
   );
 };
 
 const AppContainer = (props: AppProps) => {
-  return <ChakraProvider theme={themeChakra}>
-    <App {...props} />
-  </ChakraProvider>;
+  return (
+    <ChakraProvider theme={themeChakra}>
+      <App {...props} />
+    </ChakraProvider>
+  );
 };
 
 export default AppContainer;

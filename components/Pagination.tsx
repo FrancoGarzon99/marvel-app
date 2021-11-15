@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useRouter } from 'next/router';
-import { ModelDataMarvelGet } from '../types';
-import { Box, Stack, Button } from '@chakra-ui/react';
+import { useRouter } from "next/router";
+import { ModelDataMarvelGet } from "../types";
+import { Box, Stack, Button } from "@chakra-ui/react";
 
 interface PropsPagination {
   heroesList: ModelDataMarvelGet;
@@ -27,21 +27,25 @@ const Pagination = ({ heroesList }: PropsPagination) => {
   }
   return (
     <Box>
-      <Stack align="center" direction="row" justify="center" mt="35px" spacing={4}>
+      <Stack
+        align="center"
+        direction="row"
+        justify="center"
+        mt="35px"
+        spacing={4}
+      >
         {pageNumber !== 0 ? (
           <Box>
-            <Button onClick={previusPage}>
-              Anterior Pagina
-            </Button>
+            <Button onClick={previusPage}>Anterior Pagina</Button>
           </Box>
-
-        ) : (<></>)}
-        {pageNumber < numbersPages && <Box>
-          <Button onClick={nextPage}>
-            Siguiente Pagina
-          </Button>
-        </Box>
-        }
+        ) : (
+          <></>
+        )}
+        {pageNumber < numbersPages && (
+          <Box>
+            <Button onClick={nextPage}>Siguiente Pagina</Button>
+          </Box>
+        )}
       </Stack>
     </Box>
   );

@@ -1,9 +1,16 @@
-import type { NextPage, GetServerSideProps } from 'next';
-import { Box, Container, Image, Stack, Text, SimpleGrid } from '@chakra-ui/react';
-import { DataHeroSelect } from '../../services/Endpoints';
-import { ModelDataMarvelGet } from '../../types';
-import HeroData from '../../components/HeroData';
-import GoBack from '../../components/GoBack';
+import type { NextPage, GetServerSideProps } from "next";
+import {
+  Box,
+  Container,
+  Image,
+  Stack,
+  Text,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { DataHeroSelect } from "../../services/Endpoints";
+import { ModelDataMarvelGet } from "../../types";
+import HeroData from "../../components/HeroData";
+import GoBack from "../../components/GoBack";
 
 interface PropsHeroPage {
   dataHero: {
@@ -25,15 +32,26 @@ const HeroPage: NextPage<PropsHeroPage> = ({ dataHero }) => {
       <GoBack />
       {/* Character */}
       <Box>
-        {character.map(h => (
+        {character.map((h) => (
           <Box key={h.id}>
-            <Stack align="center" direction={["column", "column", "column", "column", "row"]} justify="center">
+            <Stack
+              align="center"
+              direction={["column", "column", "column", "column", "row"]}
+              justify="center"
+            >
               <Box>
-                <Image alt={h.name} h="400px" src={`${h.thumbnail.path}.${h.thumbnail.extension}`} w="500px" />
+                <Image
+                  alt={h.name}
+                  h="400px"
+                  src={`${h.thumbnail.path}.${h.thumbnail.extension}`}
+                  w="500px"
+                />
               </Box>
               <Box>
-                <Text fontSize="30px" fontWeight="semibold" >{h.name}</Text>
-                <Text >{h.description}</Text>
+                <Text fontSize="30px" fontWeight="semibold">
+                  {h.name}
+                </Text>
+                <Text>{h.description}</Text>
               </Box>
             </Stack>
           </Box>
@@ -63,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
   return {
     props: {
-      dataHero: PropsData
-    }
+      dataHero: PropsData,
+    },
   };
 };
