@@ -1,83 +1,68 @@
 import type { NextPage, GetServerSideProps } from 'next';
-import { Box, Container, Stack, Text } from '@chakra-ui/react';
+import { Box, Container, Image, Stack, Text, SimpleGrid } from '@chakra-ui/react';
 import { DataHeroSelect } from '../../services/Endpoints';
 import { ModelDataMarvelGet } from '../../types';
+import HeroData from '../../components/HeroData';
 
 interface PropsHeroPage {
-  heroData: ModelDataMarvelGet;
+  dataHero: {
+    character: ModelDataMarvelGet;
+    comics: ModelDataMarvelGet;
+    series: ModelDataMarvelGet;
+    stories: ModelDataMarvelGet;
+    events: ModelDataMarvelGet;
+  };
 }
-const HeroPage: NextPage<PropsHeroPage> = ({ heroData }) => {
-  const dataHero = heroData.data.results[0];
+const HeroPage: NextPage<PropsHeroPage> = ({ dataHero }) => {
+  console.log(dataHero);
+  const character = dataHero.character.data.results;
+  const comics = dataHero.comics.data.results;
+  const series = dataHero.series.data.results;
+  const stories = dataHero.stories.data.results;
+  const events = dataHero.events.data.results;
   return (
     <Box>
-      <Stack align={"center"} justify={"center"} pb={20}>
-        <Box>
-          <Text>{dataHero.name}</Text>
-          <Text>{dataHero.description}</Text>
-        </Box>
-        <Box>
-          <Box bgImage={`url(${dataHero.thumbnail.path}.${dataHero.thumbnail.extension})`} bgRepeat="no-repeat" bgSize="cover" h="400px" w="400px" />
-        </Box>
-      </Stack>
-      <Stack direction={"row"} spacing={4}>
-        <Box>
-          <Stack>
-            <Text>
-              Comics
-            </Text>
-            {dataHero.comics.items.map(c => (
-              <Box key={c.name}>
-                <Text>{c.name}</Text>
+      {/* Character */}
+      <Box>
+        {character.map(h => (
+          <Box key={h.id}>
+            <Stack align="center" direction={["column", "column", "column", "column", "row"]} justify="center">
+              <Box>
+                <Image alt={h.name} h="400px" src={`${h.thumbnail.path}.${h.thumbnail.extension}`} w="500px" />
               </Box>
-            ))}
-          </Stack>
-        </Box>
-        <Box>
-          <Stack>
-            <Text>
-              Stories
-            </Text>
-            {dataHero.stories.items.map(c => (
-              <Box key={c.name}>
-                <Text>{c.name}</Text>
+              <Box>
+                <Text fontSize="30px" fontWeight="semibold" >{h.name}</Text>
+                <Text >{h.description}</Text>
               </Box>
-            ))}
-          </Stack>
-        </Box>
-        <Box>
-          <Stack>
-            <Text>
-              Series
-            </Text>
-            {dataHero.series.items.map(c => (
-              <Box key={c.name}>
-                <Text>{c.name}</Text>
-              </Box>
-            ))}
-          </Stack>
-        </Box>
-        <Box>
-          <Stack>
-            <Text>
-              Events
-            </Text>
-            {dataHero.events.items.map(c => (
-              <Box key={c.name}>
-                <Text>{c.name}</Text>
-              </Box>
-            ))}
-          </Stack>
-        </Box>
-
-      </Stack>
+            </Stack>
+          </Box>
+        ))}
+      </Box>
+      {/* Comics */}
+      <HeroData dataArray={comics} typeTitle="Comics" />
+      {/* Series */}
+      <HeroData dataArray={series} typeTitle="Series" />
+      {/* Stories */}
+      <HeroData dataArray={stories} typeTitle="Stories" />
+      {/* Events */}
+      <HeroData dataArray={events} typeTitle="Events" />
     </Box>
   );
 };
 
 export default HeroPage;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const heroData = await DataHeroSelect(query?.id);
+  const data = await DataHeroSelect(query?.id);
+  const PropsData = {
+    character: data[0],
+    comics: data[1],
+    series: data[2],
+    stories: data[3],
+    events: data[4],
+  };
   return {
-    props: { heroData }
+    props: {
+      dataHero: PropsData
+    }
   };
 };

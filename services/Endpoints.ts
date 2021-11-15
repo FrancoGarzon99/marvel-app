@@ -30,7 +30,16 @@ export const Search = async (name : string,pageNumber : number = 0, typeSearch =
 
 };
 // Datos un superHeroe expecifico
-export const DataHeroSelect =  (id: string | undefined | string[]): Promise<any> => {
-    return axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data)
-    .catch(error => error)
+export const DataHeroSelect =  async (id: string | undefined | string[]): Promise<any> => {
+  const charactersGet = axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data).catch(error => error)
+  const comistGet = axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}/comics?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data).catch(error => error)
+  const seriesGet = axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}/series?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data).catch(error => error)
+  const storiesGet = axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}/series?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data).catch(error => error)
+  const evenstGet = axios.get(`https://gateway.marvel.com:443/v1/public/characters/${id}/events?apikey=${KEY_GETS_PUBLIC}&ts=${TIME_TAMP}&hash=${HASH_GETS_REQUEST}`).then(res => res.data).catch(error => error)
+  try {
+    const response = await Promise.all([charactersGet, comistGet, seriesGet, storiesGet, evenstGet]);
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
