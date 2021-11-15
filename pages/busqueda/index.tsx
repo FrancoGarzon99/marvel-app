@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { NextPage, GetServerSideProps } from 'next';
+import { useState } from 'react';
+import type { NextPage } from 'next';
 import { Box, Button, Input, Radio, RadioGroup, Stack, Text, SimpleGrid } from '@chakra-ui/react';
 import { ModelDataMarvelGet } from '../../types';
 import { Search } from '../../services/Endpoints';
