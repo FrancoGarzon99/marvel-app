@@ -14,7 +14,6 @@ interface PropsHeroPage {
   };
 }
 const HeroPage: NextPage<PropsHeroPage> = ({ dataHero }) => {
-  console.log(dataHero);
   const character = dataHero.character.data.results;
   const comics = dataHero.comics.data.results;
   const series = dataHero.series.data.results;
