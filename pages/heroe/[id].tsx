@@ -3,6 +3,7 @@ import { Box, Container, Image, Stack, Text, SimpleGrid } from '@chakra-ui/react
 import { DataHeroSelect } from '../../services/Endpoints';
 import { ModelDataMarvelGet } from '../../types';
 import HeroData from '../../components/HeroData';
+import GoBack from '../../components/GoBack';
 
 interface PropsHeroPage {
   dataHero: {
@@ -21,6 +22,7 @@ const HeroPage: NextPage<PropsHeroPage> = ({ dataHero }) => {
   const events = dataHero.events.data.results;
   return (
     <Box>
+      <GoBack />
       {/* Character */}
       <Box>
         {character.map(h => (
