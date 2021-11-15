@@ -15,7 +15,7 @@ import { Search } from "../../services/Endpoints";
 import CardHero from "../../components/CardHero";
 import GoBack from "../../components/GoBack";
 
-interface PropsBusqueda {}
+interface PropsBusqueda { }
 const Busqueda: NextPage<PropsBusqueda> = () => {
   const [value, setValue] = useState("character");
   const [inputText, setInputText] = useState<string>("");
@@ -29,13 +29,13 @@ const Busqueda: NextPage<PropsBusqueda> = () => {
     e.preventDefault();
     Search(inputText, numberPage, value).then((res: any) => setHeroSearch(res));
   }
-  function addFavType() {}
+  function addFavType() { }
   return (
     <Box>
       <GoBack />
       <Stack
         align="center"
-        direction={"row"}
+        direction={["column", "column", "column", "row"]}
         justify="space-between"
         py={6}
         spacing={2}
